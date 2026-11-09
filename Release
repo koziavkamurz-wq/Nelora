@@ -1,0 +1,8 @@
+Origin: Nelora
+Label: Nelora
+Architectures: iphoneos-arm
+Description: Camera, Dock, Motion Blur and Glass for iOS 12 / Chimera
+SHA256:
+ 091a5671cbe099ef6a9026689e75a363c9fc37b0bc76d2b4cd797f8306fe2beb 2288 Packages
+ e9eb833e13fd6bc8533c7368c199f65a974a4e9fcb4e8fcf5ff66c408e73ce95 994 Packages.gz
+ d97589c31bb521ab29f461637ff0f548da4d5f017e62ebabb07dbcad21743db7 1121 Packages.bz2

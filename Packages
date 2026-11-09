@@ -1,0 +1,63 @@
+Package: com.theipos.camera
+Version: 0.3.0
+Architecture: iphoneos-arm
+Maintainer: Nulora
+Depends: firmware (>= 12.0)
+Filename: ./Camera/com.theipos.camera_0.3.0_iphoneos-arm.deb
+Size: 16408192
+MD5sum: 9be1ab0504f15b90a1eb391f6ad4b911
+SHA1: 9c63a394665ed15ae82c1da17028bbfbf8e7931d
+SHA256: 97ec5d91dfb8766d21ca07d7804bc54a0a3d728d2923b166e453a18fa4343f2b
+Section: Camera
+Description: Camera with software horizon lock. Standalone app, no system camera injection.
+Author: Nulora
+Name: Nulora Camera
+
+Package: com.theipos.dock
+Version: 0.3.0
+Architecture: iphoneos-arm
+Maintainer: Nulora
+Installed-Size: 140
+Depends: firmware (>= 12.0), firmware (<< 13.0), mobilesubstrate, preferenceloader
+Filename: ./Utility/com.theipos.dock_0.3.0_iphoneos-arm.deb
+Size: 17840
+MD5sum: 8a934b3cfb50a7e8477dc496919729ae
+SHA1: 27cf4fd38dca5a0b5f6c9cf19ea2363e43b891d5
+SHA256: 90bedf10b2df365fd4e9156e25cefe9021cdfb29b5d12b32e686b91e09231422
+Section: Themes
+Description: Rounded translucent home screen dock with five app slots and separate preferences. iOS 12 only.
+Author: Nulora
+Name: Nulora Dock
+
+Package: com.theipos.glass
+Version: 0.3.0
+Architecture: iphoneos-arm
+Maintainer: Nulora
+Installed-Size: 140
+Depends: firmware (>= 12.0), firmware (<< 13.0), mobilesubstrate, preferenceloader
+Filename: ./iOS26/com.theipos.glass_0.3.0_iphoneos-arm.deb
+Size: 19490
+MD5sum: 9d7154f2915e6d1a1d891675029dbafe
+SHA1: f0c56abd951d27af86cb27b45f18c6ec9268d3db
+SHA256: 09e1c259620660bd524cb69af02c17decb6a603413710bd8b60352e3246fc74e
+Section: Themes
+Description: Glass-inspired UIKit panels, notification banners and real status bar backgrounds on iOS 12. Not Apple's native Liquid Glass renderer.
+Author: Nulora
+Name: Nulora Glass
+
+Package: com.theipos.motion
+Version: 0.3.0
+Architecture: iphoneos-arm
+Maintainer: Nulora
+Installed-Size: 140
+Depends: firmware (>= 12.0), mobilesubstrate, preferenceloader
+Filename: ./iOS26/com.theipos.motion_0.3.0_iphoneos-arm.deb
+Size: 19086
+MD5sum: fdbf10d8ff46845d5b873a008514156d
+SHA1: e5f506cbd5554b5359fabb870324f64e70e247af
+SHA256: d304bf9d95bff204308241d0b14e480f247d576c1958935ac4e951861f153bff
+Section: Motion Blur
+Description: Adjustable directional motion blur for UIKit animations and scrolling. Does not increase display refresh rate.
+Author: Nulora
+Name: Nulora Motion
+
