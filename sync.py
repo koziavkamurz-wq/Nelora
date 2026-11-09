@@ -4,6 +4,9 @@ import pathlib
 import re
 import urllib.request
 import urllib.parse
+import bz2
+import gzip
+import shutil
 
 base = 'https://nuloraos.github.io/TheIpOS/'
 out = pathlib.Path('public')
@@ -17,6 +20,7 @@ def read(name, maximum=2*1024*1024):
 
 index = read('Packages')
 packages = []
+blocks = []
 for block in index.decode('utf8').split('\n\n'):
     fields = dict(line.split(': ', 1) for line in block.splitlines() if ': ' in line and not line.startswith(' '))
     if not fields.get('Package'):
@@ -27,22 +31,39 @@ for block in index.decode('utf8').split('\n\n'):
     data = read(relative, 64*1024*1024)
     if hashlib.sha256(data).hexdigest() != fields['SHA256'] or len(data) != int(fields['Size']):
         raise ValueError('Package integrity mismatch')
-    dest = out / relative
+    package_id = fields['Package']
+    folder = 'Camera' if package_id.endswith('.camera') else 'iOS26' if package_id.endswith(('.motion', '.glass')) else 'Utility'
+    published = folder + '/' + pathlib.PurePosixPath(relative).name
+    fields['Filename'] = './' + published
+    block = re.sub(r'^Filename: .+$', 'Filename: ./' + published, block, flags=re.M)
+    blocks.append(block.strip())
+    dest = out / published
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(data)
     packages.append(fields)
 if not packages:
     raise ValueError('Empty source')
-for name in ['Release', 'Packages', 'Packages.gz', 'Packages.bz2']:
-    (out / name).write_bytes(index if name == 'Packages' else read(name))
-# Check all compressed indexes against Release, so an interrupted upstream deploy cannot mix generations.
-release = (out / 'Release').read_text()
+index = ('\n\n'.join(blocks) + '\n\n').encode('utf8')
+(out / 'Packages').write_bytes(index)
+(out / 'Packages.gz').write_bytes(gzip.compress(index, mtime=0))
+(out / 'Packages.bz2').write_bytes(bz2.compress(index))
+release = 'Origin: Nelora\nLabel: Nelora\nArchitectures: iphoneos-arm\nDescription: Camera, Dock, Motion Blur and Glass for iOS 12 / Chimera\nSHA256:\n'
 for name in ['Packages', 'Packages.gz', 'Packages.bz2']:
     data = (out / name).read_bytes()
-    expected = f' {hashlib.sha256(data).hexdigest()} {len(data)} {name}'
-    if expected not in release:
-        raise ValueError('Index integrity mismatch')
+    release += f' {hashlib.sha256(data).hexdigest()} {len(data)} {name}\n'
+(out / 'Release').write_text(release, encoding='utf8')
 (out / '.nojekyll').touch()
 (out / 'CydiaIcon.png').write_bytes(read('icons/nulora-motion.png'))
+for folder in ['Camera', 'Utility', 'iOS26', 'Icons', 'Wallpapers']:
+    (out / folder).mkdir(exist_ok=True)
+    pathlib.Path(folder).mkdir(exist_ok=True)
+for kind in ['camera', 'motion', 'dock', 'glass']:
+    (out / 'Icons' / f'nelora-{kind}.png').write_bytes(read(f'icons/nulora-{kind}.png'))
+(out / 'Wallpapers' / 'README.md').write_text('Обои пока не добавлены.\n', encoding='utf8')
+# Put the actual public DEBs and folders in GitHub Code as requested, not just in Actions artifacts.
+for folder in ['Camera', 'Utility', 'iOS26', 'Icons', 'Wallpapers']:
+    shutil.copytree(out / folder, folder, dirs_exist_ok=True)
+for name in ['Packages', 'Packages.gz', 'Packages.bz2', 'Release', 'CydiaIcon.png', '.nojekyll']:
+    shutil.copyfile(out / name, name)
 # This is an APT source only. No website or catalogue HTML is published.
 print(f'Published {len(packages)} verified packages')
