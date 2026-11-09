@@ -4,6 +4,7 @@ import pathlib
 import re
 import urllib.request
 import urllib.parse
+import json
 
 base = 'https://nuloraos.github.io/TheIpOS/'
 out = pathlib.Path('public')
@@ -45,5 +46,14 @@ for name in ['Packages', 'Packages.gz', 'Packages.bz2']:
 (out / '.nojekyll').touch()
 (out / 'CydiaIcon.png').write_bytes(read('icons/nulora-motion.png'))
 items = ''.join(f'<li>{p["Name"]} {p["Version"]}</li>' for p in packages)
-(out / 'index.html').write_text('''<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Nulora · источник</title><style>body{margin:10vh auto;max-width:700px;padding:24px;background:#09090c;color:#eee;font:18px system-ui}a{color:#b89aff}code{overflow-wrap:anywhere}</style><h1>Nulora</h1><p>Источник для Sileo:</p><code>https://koziavkamurz-wq.github.io/TheIpOS/</code><p><a href="sileo://source/https://koziavkamurz-wq.github.io/TheIpOS/">Добавить в Sileo</a></p><ul>''' + items + '''</ul><p><a href="https://github.com/NuloraOS/TheIpOS">Исходники NuloraOS</a> · <a href="Packages">Индекс пакетов</a></p></html>''', encoding='utf8')
+cards = []
+for p in packages:
+    kind = 'camera' if p['Package'].endswith('.camera') else 'motion' if p['Package'].endswith('.motion') else 'glass' if p['Package'].endswith('.glass') else 'dock'
+    icon = f'icons/nulora-{kind}.png'
+    (out / 'icons').mkdir(exist_ok=True)
+    (out / icon).write_bytes(read(icon))
+    descriptions = {'camera': 'Удержание горизонта, запись обработанного видео и экранный свет: белый или тёплый жёлтый.', 'motion': 'Направленное размытие при прокрутке и анимациях UIKit. Сила и области применения — в настройках.', 'dock': 'Полупрозрачная закруглённая панель с пятью местами для приложений. Свои настройки радиуса и прозрачности.', 'glass': 'Стеклянное оформление панелей, уведомлений и фона настоящей строки времени и батареи.'}
+    cards.append(dict(name=p['Name'], version=p['Version'], file=p['Filename'], sha=p['SHA256'], icon=icon, category=kind if kind in ['camera','motion'] else 'theme', description=descriptions[kind], mirror=f'https://github.com/NuloraOS/TheIpOS/releases/download/v{p["Version"]}/'+pathlib.PurePosixPath(p['Filename']).name))
+serialized = json.dumps(cards, ensure_ascii=False).replace('<', '\\u003c')
+(out / 'index.html').write_text(pathlib.Path('index.template.html').read_text().replace('__PACKAGES__', serialized), encoding='utf8')
 print(f'Published {len(packages)} verified packages')
