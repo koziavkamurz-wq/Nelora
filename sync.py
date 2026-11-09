@@ -44,6 +44,5 @@ for name in ['Packages', 'Packages.gz', 'Packages.bz2']:
         raise ValueError('Index integrity mismatch')
 (out / '.nojekyll').touch()
 (out / 'CydiaIcon.png').write_bytes(read('icons/nulora-motion.png'))
-items = ''.join(f'<li>{p["Name"]} {p["Version"]}</li>' for p in packages)
-(out / 'index.html').write_text('''<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Nulora · источник</title><style>body{margin:10vh auto;max-width:700px;padding:24px;background:#09090c;color:#eee;font:18px system-ui}a{color:#b89aff}code{overflow-wrap:anywhere}</style><h1>Nulora</h1><p>Источник для Sileo:</p><code>https://koziavkamurz-wq.github.io/TheIpOS/</code><p><a href="sileo://source/https://koziavkamurz-wq.github.io/TheIpOS/">Добавить в Sileo</a></p><ul>''' + items + '''</ul><p><a href="https://github.com/NuloraOS/TheIpOS">Исходники NuloraOS</a> · <a href="Packages">Индекс пакетов</a></p></html>''', encoding='utf8')
+# This is an APT source only. No website or catalogue HTML is published.
 print(f'Published {len(packages)} verified packages')
