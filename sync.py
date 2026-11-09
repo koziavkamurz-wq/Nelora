@@ -25,6 +25,8 @@ for block in index.decode('utf8').split('\n\n'):
     fields = dict(line.split(': ', 1) for line in block.splitlines() if ': ' in line and not line.startswith(' '))
     if not fields.get('Package'):
         continue
+    if fields['Package'] not in {'com.theipos.camera','com.theipos.o2camera','com.theipos.dock'}:
+        continue
     relative = fields['Filename'].removeprefix('./')
     if not re.fullmatch(r'[A-Za-z0-9_./+\-]+', relative) or '..' in relative.split('/') or relative.startswith('/'):
         raise ValueError('Unsafe package path')
@@ -32,7 +34,7 @@ for block in index.decode('utf8').split('\n\n'):
     if hashlib.sha256(data).hexdigest() != fields['SHA256'] or len(data) != int(fields['Size']):
         raise ValueError('Package integrity mismatch')
     package_id = fields['Package']
-    folder = 'Camera' if package_id.endswith('.camera') else 'iOS26' if package_id.endswith(('.motion', '.glass')) else 'Utility'
+    folder = 'Camera' if package_id.endswith(('.camera','.o2camera')) else 'Utility'
     published = folder + '/' + pathlib.PurePosixPath(relative).name
     fields['Filename'] = './' + published
     block = re.sub(r'^Filename: .+$', 'Filename: ./' + published, block, flags=re.M)
@@ -47,7 +49,7 @@ index = ('\n\n'.join(blocks) + '\n\n').encode('utf8')
 (out / 'Packages').write_bytes(index)
 (out / 'Packages.gz').write_bytes(gzip.compress(index, mtime=0))
 (out / 'Packages.bz2').write_bytes(bz2.compress(index))
-release = 'Origin: Nelora\nLabel: Nelora\nArchitectures: iphoneos-arm\nDescription: Camera, Dock, Motion Blur and Glass for iOS 12 / Chimera\nSHA256:\n'
+release = 'Origin: Nelora\nLabel: Nelora\nArchitectures: iphoneos-arm\nComponents: main\nDescription: Camera, Dock, Motion Blur and Glass for iOS 12 / Chimera\nSHA256:\n'
 for name in ['Packages', 'Packages.gz', 'Packages.bz2']:
     data = (out / name).read_bytes()
     release += f' {hashlib.sha256(data).hexdigest()} {len(data)} {name}\n'
@@ -57,7 +59,7 @@ for name in ['Packages', 'Packages.gz', 'Packages.bz2']:
 for folder in ['Camera', 'Utility', 'iOS26', 'Icons', 'Wallpapers']:
     (out / folder).mkdir(exist_ok=True)
     pathlib.Path(folder).mkdir(exist_ok=True)
-for kind in ['camera', 'motion', 'dock', 'glass']:
+for kind in ['camera', 'o2camera', 'dock']:
     (out / 'Icons' / f'nelora-{kind}.png').write_bytes(read(f'icons/nulora-{kind}.png'))
 (out / 'Wallpapers' / 'README.md').write_text('Обои пока не добавлены.\n', encoding='utf8')
 # Put the actual public DEBs and folders in GitHub Code as requested, not just in Actions artifacts.
