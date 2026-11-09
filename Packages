@@ -1,63 +1,49 @@
 Package: com.theipos.camera
-Version: 0.3.0
+Version: 0.4.0
 Architecture: iphoneos-arm
-Maintainer: Nulora
+Maintainer: Nelora
 Depends: firmware (>= 12.0)
-Filename: ./Camera/com.theipos.camera_0.3.0_iphoneos-arm.deb
-Size: 16408192
-MD5sum: 9be1ab0504f15b90a1eb391f6ad4b911
-SHA1: 9c63a394665ed15ae82c1da17028bbfbf8e7931d
-SHA256: 97ec5d91dfb8766d21ca07d7804bc54a0a3d728d2923b166e453a18fa4343f2b
-Section: Camera
-Description: Camera with software horizon lock. Standalone app, no system camera injection.
-Author: Nulora
-Name: Nulora Camera
+Conflicts: com.theipos.motion, com.theipos.glass
+Filename: ./Camera/com.theipos.camera_0.4.0_iphoneos-arm.deb
+Size: 16311512
+MD5sum: 3e8ed892f69d3e8da277edbcc7e385ef
+SHA1: a0b61a609316637c386c13f3478ed758f337cdfa
+SHA256: 4061d2413a9cb75097a3b4319928e309121336dfe444cc6f3539e2008ee3e498
+Section: Tweaks
+Description: Standalone camera with bounded GPU preview, gallery and software horizon lock. O2 demo labels do not change real recording format.
+Author: Nelora
+Name: Nelora Camera
 
 Package: com.theipos.dock
-Version: 0.3.0
+Version: 0.4.0
 Architecture: iphoneos-arm
 Maintainer: Nulora
 Installed-Size: 140
 Depends: firmware (>= 12.0), firmware (<< 13.0), mobilesubstrate, preferenceloader
-Filename: ./Utility/com.theipos.dock_0.3.0_iphoneos-arm.deb
-Size: 17840
-MD5sum: 8a934b3cfb50a7e8477dc496919729ae
-SHA1: 27cf4fd38dca5a0b5f6c9cf19ea2363e43b891d5
-SHA256: 90bedf10b2df365fd4e9156e25cefe9021cdfb29b5d12b32e686b91e09231422
+Conflicts: com.theipos.motion, com.theipos.glass
+Filename: ./Utility/com.theipos.dock_0.4.0_iphoneos-arm.deb
+Size: 18404
+MD5sum: 892bce1cfa20b4044d3bfd26046a6e99
+SHA1: dd8870b05da725f19e2cf2b126373f6f11711858
+SHA256: ef2773a7a25f73e6d199d0318cf7cbb15db16ae3f6a007ba3779dd5d1e1b68f2
 Section: Themes
 Description: Rounded translucent home screen dock with five app slots and separate preferences. iOS 12 only.
 Author: Nulora
 Name: Nulora Dock
 
-Package: com.theipos.glass
-Version: 0.3.0
+Package: com.theipos.o2camera
+Version: 0.4.0
 Architecture: iphoneos-arm
-Maintainer: Nulora
-Installed-Size: 140
-Depends: firmware (>= 12.0), firmware (<< 13.0), mobilesubstrate, preferenceloader
-Filename: ./iOS26/com.theipos.glass_0.3.0_iphoneos-arm.deb
-Size: 19490
-MD5sum: 9d7154f2915e6d1a1d891675029dbafe
-SHA1: f0c56abd951d27af86cb27b45f18c6ec9268d3db
-SHA256: 09e1c259620660bd524cb69af02c17decb6a603413710bd8b60352e3246fc74e
-Section: Themes
-Description: Glass-inspired UIKit panels, notification banners and real status bar backgrounds on iOS 12. Not Apple's native Liquid Glass renderer.
-Author: Nulora
-Name: Nulora Glass
-
-Package: com.theipos.motion
-Version: 0.3.0
-Architecture: iphoneos-arm
-Maintainer: Nulora
-Installed-Size: 140
-Depends: firmware (>= 12.0), mobilesubstrate, preferenceloader
-Filename: ./iOS26/com.theipos.motion_0.3.0_iphoneos-arm.deb
-Size: 19086
-MD5sum: fdbf10d8ff46845d5b873a008514156d
-SHA1: e5f506cbd5554b5359fabb870324f64e70e247af
-SHA256: d304bf9d95bff204308241d0b14e480f247d576c1958935ac4e951861f153bff
-Section: Motion Blur
-Description: Adjustable directional motion blur for UIKit animations and scrolling. Does not increase display refresh rate.
-Author: Nulora
-Name: Nulora Motion
+Maintainer: Nelora
+Depends: firmware (>= 12.0)
+Conflicts: com.theipos.motion, com.theipos.glass
+Filename: ./Camera/com.theipos.o2camera_0.4.0_iphoneos-arm.deb
+Size: 16351410
+MD5sum: 4e8a186c5046184d475e1613b5f887f5
+SHA1: abd14a5ed8c0821b118b57365907361b91eab11a
+SHA256: 285bc415edf34831d4da08f43fd88eb870280fcdcf26a9bffea29e76a18807ec
+Section: Tweaks
+Description: Standalone camera with bounded GPU preview, gallery and software horizon lock. O2 demo labels do not change real recording format.
+Author: Nelora
+Name: Nelora O2 Demo
 
