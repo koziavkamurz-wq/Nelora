@@ -1,47 +1,47 @@
 Package: com.theipos.camera
-Version: 0.4.2
+Version: 0.4.3
 Architecture: iphoneos-arm
 Maintainer: Nelora
 Depends: firmware (>= 12.0)
 Conflicts: com.theipos.motion, com.theipos.glass
-Filename: ./Camera/com.theipos.camera_0.4.2_iphoneos-arm.deb
-Size: 16322570
-MD5sum: ce9b800eab882b61e79d4aa5927d4be7
-SHA1: cad73fc35bd2c28c58cf0231f32dbc8af3b59631
-SHA256: e61d104e5797740f4535960c1d706d7c9a12de39b488397c955d0271c462e4e4
+Filename: ./Camera/com.theipos.camera_0.4.3_iphoneos-arm.deb
+Size: 16338122
+MD5sum: f4fcf2de31898af1d64f1a9e612a6917
+SHA1: 67596ada2b39e969a49eab90994783ba9278bf23
+SHA256: 5b789d0730545814bfe31830935ffab907f012cebd01f282109ae3c36828c116
 Section: Tweaks
 Description: Standalone camera with bounded GPU preview, gallery and software horizon lock. O2 demo labels do not change real recording format.
 Author: Nelora
 Name: Nelora Camera
 
 Package: com.theipos.dock
-Version: 0.4.0
+Version: 0.4.3
 Architecture: iphoneos-arm
 Maintainer: Nulora
 Installed-Size: 140
 Depends: firmware (>= 12.0), firmware (<< 13.0), mobilesubstrate, preferenceloader
 Conflicts: com.theipos.motion, com.theipos.glass
-Filename: ./Utility/com.theipos.dock_0.4.0_iphoneos-arm.deb
-Size: 18414
-MD5sum: c11d5a43f1a8b4ebfd2d4807947d15fe
-SHA1: b8a796cf0a52fc2b7a7bbe3c28917da9afefb874
-SHA256: 9da3975778037a9e113c592e9ca4191f040e84f9bd75cabdff8d69b794a850b2
+Filename: ./Utility/com.theipos.dock_0.4.3_iphoneos-arm.deb
+Size: 19448
+MD5sum: 3433aca06c9a61ff2585f28a2a7bb1c1
+SHA1: 8c68df668a675813018610bbf516d910251432cd
+SHA256: ca38d112484492df6ec55aa07a4f659b647ea2ba45b5329d06a72528bb63b764
 Section: Themes
 Description: Rounded translucent home screen dock with five app slots and separate preferences. iOS 12 only.
 Author: Nulora
 Name: Nulora Dock
 
 Package: com.theipos.o2camera
-Version: 0.4.2
+Version: 0.4.3
 Architecture: iphoneos-arm
 Maintainer: Nelora
 Depends: firmware (>= 12.0)
 Conflicts: com.theipos.motion, com.theipos.glass
-Filename: ./Camera/com.theipos.o2camera_0.4.2_iphoneos-arm.deb
-Size: 16362852
-MD5sum: 21bfe53f9f60eb6496546c9faf9842d0
-SHA1: 9ea544ddeecd8cf096fa855391445eb352497509
-SHA256: ff47adc2c059114a3bf96682267bb2d22ae0f3c632a3f6afadd95e0d5052caed
+Filename: ./Camera/com.theipos.o2camera_0.4.3_iphoneos-arm.deb
+Size: 16761296
+MD5sum: 3c45ba275e912dffb7c7cb855d7fc5ba
+SHA1: 4d06379c0db886422ed55410feec06739138c55a
+SHA256: 54abe0bafe482b0e608f10e28dd0fc713be4920c557338be548ac9ad2b5f137a
 Section: Tweaks
 Description: Standalone camera with bounded GPU preview, gallery and software horizon lock. O2 demo labels do not change real recording format.
 Author: Nelora

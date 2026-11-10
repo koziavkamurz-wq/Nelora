@@ -4,6 +4,6 @@ Architectures: iphoneos-arm
 Components: main
 Description: Camera, Dock, Motion Blur and Glass for iOS 12 / Chimera
 SHA256:
- e8d235860af6b4fce3f59705cb8157be6d6fe1315b0ff0a3e16344cf992d8e16 1832 Packages
- 7050b0df294e23c91069dc1c23004669debd19a3359f713757bcb34946b5a7c4 812 Packages.gz
- 1d122025ea14c5b185ab15172fdfed50a9c256506ea8d4cb30c63ea700549c66 947 Packages.bz2
+ b5ea98ae03bdbe4033cbbe9cfa1e856c65e9c169fbf3de6db4e93be73eb67a67 1832 Packages
+ 34853f3cbf88db78522a34a031443032fe2378145e2122e02a7ca87a53940090 807 Packages.gz
+ 28e7abe6ef46a368479b01f113f19ce0dc81a87f96c9879dd8b46d2a5618b694 948 Packages.bz2
